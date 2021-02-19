@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import SearchBox from "./components/SearchBox";
+import LocationContainer from "./components/LocationContainer";
+import { useState } from "react";
 
 function App() {
+  const [query, setQuery] = useState("");
+
+  const handleSearch = (queryValue) => {
+    setQuery(queryValue);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SearchBox onSearchLocation={handleSearch} />
+      {query && <LocationContainer query={query} />}
     </div>
   );
 }
